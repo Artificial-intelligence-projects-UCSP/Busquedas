@@ -18,6 +18,7 @@ El programa fue implementado en c++ y no tiene interfaz grafica pero cumple con 
 
 
 PARTICIPANTES:
+
 Durand Manrique, Álvaro Diego
 
 Supo Portugal, Paul Pharaf
