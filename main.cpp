@@ -118,8 +118,6 @@ public:
 		return sqrt (pow ((a.first - b.first), 2) + pow ((a.second - b.second), 2));
 	}
 
-
-	/// busqueda A*
 	vector<pair<int,int>>busqueda_euristica(N inicial, N objetivo) {
 		vector<pair<int,int>> camino;
 		Node *Actual = nullptr, *NMin=nullptr;
@@ -172,8 +170,6 @@ public:
 		return camino;
 	}
 
-
-	/// busqueda BFS
 	vector<pair<int, int>> busqueda_Ciega(N inicial, N objetivo) {
 		vector<pair<int, int>> camino;
 		Node* Actual = nullptr;
