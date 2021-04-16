@@ -3,7 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <list>
-//#include <bits/stdc++.h> /* Librera util en caso de usar Devian */
+//#include <bits/stdc++.h> /* Librería útil en caso de usar Devian */
 
 using namespace std;
 
