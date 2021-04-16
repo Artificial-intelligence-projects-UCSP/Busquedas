@@ -4,6 +4,7 @@ intersección de las líneas y las aristas son las líneas que unen los vértice
 muestra en la figura, una vez creada la malla regular eliminar vértices del grafo en un
 porcentaje del 20% (100x100=10 000) de los 10 000 nodos eliminar 2 000 nodos
 forma aleatoria
+
 2.Implementar 1 búsqueda ciega y 1 heurística donde el nodo de inicio es cualquier
 vértice de la grilla por ejemplo nodo de coordenada (0,0) y el nodo objetivo sea otro
 nodo por ejemplo (37,64), el algoritmo deberá recibir el nodo de inicio y fin y deberá
