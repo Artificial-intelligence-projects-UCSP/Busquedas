@@ -1,4 +1,4 @@
-ejercicio numero 1 :
+Ejercicio numero 1 :
 1. Crear un grafo regular a partir de una grilla de 100 por 100 donde cada vértice es la
 intersección de las líneas y las aristas son las líneas que unen los vértices como se
 muestra en la figura, una vez creada la malla regular eliminar vértices del grafo en un
@@ -15,4 +15,11 @@ El programa fue implementado en c++ y no tiene interfaz grafica pero cumple con 
 1.EL programa pedira coodenadas iniciales -> (x,y)
 2.EL programa pedira coordenadas objetivos -> (x,y)
 3.se imprimira primero la busqueda euristica y luego la busqueda ciega
+
+
+PARTICIPANTES:
+Durand Manrique, Álvaro Diego
+Supo Portugal, Paul Pharaf
+Tito Acrota, José Emmanuel
+Zapater Cabrera, Luis Enrique
 
