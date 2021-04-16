@@ -245,10 +245,10 @@ int main (int argc, char **argv) {
 				graph->InsertEdge (x * i + j, x * (i+1) + j-1, 1);
 		}
 	}
-	//graph->PrintGraph();
+	graph->PrintGraph();
 	for ( int i = 0; i < 2000; ++i )
 		graph->RemoveNode (rand () % (10000-i));
-	//graph->PrintGraph();
+	graph->PrintGraph();
 	pair<int, int> inicial;
 	pair<int, int> objetivo;
 	cout << endl << "Ingresa las coordenadas iniciales: "; cin >> inicial.first>> inicial.second;
