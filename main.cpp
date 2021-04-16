@@ -169,7 +169,7 @@ public:
 		return camino;
 	}
 
-	vector<pair<int, int>> busqueda_Ciega(N inicial, N objetivo) {
+	vector<pair<int, int>> busqueda_ciega(N inicial, N objetivo) {
 		vector<pair<int, int>> camino;
 		Node* Actual = nullptr;
 		vector<Node* > Ncamino;
@@ -255,7 +255,7 @@ int main(int argc, char** argv) {
 	cout << "Ingresa las coordenadas objetivos: "; cin >> objetivo.first >> objetivo.second;
 
 	caminoA = graph->busqueda_heuristica(inicial, objetivo);
-	caminoBlind = graph->busqueda_Ciega(inicial, objetivo);
+	caminoBlind = graph->busqueda_ciega(inicial, objetivo);
 	delete graph;
 	return 0;
 }
