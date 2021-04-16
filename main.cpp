@@ -4,16 +4,7 @@
 #include <math.h>
 #include <list>
 
-#include <random>
 using namespace std;
-
-int random() {
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_real_distribution<> dis(1.0, 2.0);
-	return dis(gen);
-}
-
 
 template<class G>
 class _Edge {
@@ -84,7 +75,8 @@ public:
 			for (int i = 0; i < A->edges.size(); i++) {
 				if (A->edges[i]->data == e and A->edges[i]->nodes[A->edges[i]->nodes[1]->data == B->data] == B) {
 					for (int j = 0; j < B->edges.size(); j++) {
-						if (B->edges[j]->data == e and B->edges[j]->nodes[B->edges[j]->nodes[1]->data == A->data] == A) {
+						if (B->edges[j]->data == e and
+							B->edges[j]->nodes[B->edges[j]->nodes[1]->data == A->data] == A) {
 							Edge* ed = (A->edges[i]);
 							A->edges.erase(A->edges.begin() + i);
 							if (A != B)
@@ -125,9 +117,7 @@ public:
 		return sqrt(pow((a.first - b.first), 2) + pow((a.second - b.second), 2));
 	}
 
-
-	/// busqueda A*
-	vector<pair<int, int>>busqueda_euristica(N inicial, N objetivo) {
+	vector<pair<int, int>>busqueda_heuristica(N inicial, N objetivo) {
 		vector<pair<int, int>> camino;
 		Node* Actual = nullptr, * NMin = nullptr;
 		Edge* EMin = nullptr;
@@ -155,7 +145,7 @@ public:
 				Ncamino.push_back(NMin);
 				Ecamino.push_back(EMin);
 			}
-			cout << endl << "busqueda heuristica :" << endl;
+			cout << endl << "Busqueda Heuristica :" << endl;
 
 			for (int i = Ncamino.size() - 1; i; i--) {
 				for (auto edge : (Ncamino[i])->edges) {
@@ -176,13 +166,11 @@ public:
 				camino.push_back(make_pair(node->data.first, node->data.second));
 			}
 		}
-		cout <<endl<<endl<< "Distancia: " << total<<endl;
+		cout << endl << endl << "Distancia A*: " << total << endl;
 		return camino;
 	}
 
-
-	/// busqueda BFS
-	vector<pair<int, int>> busqueda_Ciega(N inicial, N objetivo) {
+	vector<pair<int, int>> busqueda_ciega(N inicial, N objetivo) {
 		vector<pair<int, int>> camino;
 		Node* Actual = nullptr;
 		vector<Node* > Ncamino;
@@ -213,19 +201,19 @@ public:
 			}
 			if (!cola.empty())
 				Ncamino.push_back(cola.front());
-			cout << endl << "busqueda ciega : " << endl;
+			cout << endl << "Busqueda Ciega : " << endl;
 			for (auto node : Ncamino) {
 				cout << "(" << node->data.first << "," << node->data.second << "); ";
 				camino.push_back(make_pair(node->data.first, node->data.second));
 				node->marked = false;
 			}
 		}
-		cout << endl << endl << "Distancia: " << camino.size() << endl;
+		cout << endl << endl << "Distancia BFS: " << camino.size() << endl;
 		return camino;
 	}
 
 	void PrintGraph() {
-		cout << "numero de nodos: " << nodes.size() << endl << endl;
+		cout << "Numero de nodos: " << nodes.size() << endl << endl;
 		for (auto it : nodes) {
 			cout << "(" << it->data.first << "," << it->data.second << ") ";
 			it->DisplayEdges();
@@ -242,9 +230,12 @@ bool b = false;
 
 int main(int argc, char** argv) {
 	srand(time(NULL));
-	int x;
-	cout << "Ingrese la dimension del grafo" << endl;
+	int x,nodesup;
+	cout << "Ingrese la dimension del grafo: ";
 	cin >> x;
+	cout << "Ingrese la cantidad de nodos a eliminar: ";
+	cin >> nodesup;
+
 	for (int i = 0; i < x; ++i)
 		for (int j = 0; j < x; ++j)
 			graph->InsertNode(make_pair(i, j), i + j);
@@ -261,22 +252,17 @@ int main(int argc, char** argv) {
 				graph->InsertEdge(x * i + j, x * (i + 1) + j - 1, 1);
 		}
 	}
-	//graph->PrintGraph();
-
-	//Eliminamos 2000 aristas
-	int elim;
-	cout << "Nodos a eliminar: " << endl;
-	cin >> elim;
-	for (int i = 0; i < elim; ++i)
-		graph->RemoveNode(rand() % (elim*5 - i));
-	//graph->PrintGraph();
+	graph->PrintGraph();
+	for (int i = 0; i < nodesup; ++i)
+		graph->RemoveNode(rand() % (nodesup*nodesup - i));
+	graph->PrintGraph();
 	pair<int, int> inicial;
 	pair<int, int> objetivo;
 	cout << endl << "Ingresa las coordenadas iniciales: "; cin >> inicial.first >> inicial.second;
 	cout << "Ingresa las coordenadas objetivos: "; cin >> objetivo.first >> objetivo.second;
 
-	caminoA = graph->busqueda_euristica(inicial, objetivo);
-	caminoBlind = graph->busqueda_Ciega(inicial, objetivo);
+	caminoA = graph->busqueda_heuristica(inicial, objetivo);
+	caminoBlind = graph->busqueda_ciega(inicial, objetivo);
 	delete graph;
 	return 0;
 }
